@@ -2,7 +2,7 @@
 extends MultiMeshInstance3D
 
 @export_node_path var arch : NodePath
-@export_range(-20,20,0.1) var length_arch : float = 6
+@export_range(-20,20,0.01) var length_arch : float = 6
 @export_range(-89,89,1, "radians") var angle_y_cutsurface : float = 0
 #@export_node_path var cut_surface : NodePath
 
@@ -63,18 +63,26 @@ func _process(delta: float) -> void:
 		var brick_row_length = corners.max()
 		var last_brick_min_length = corners.max() - corners.min()
 		
-		var brick_fill = fill_length_with_bricks(brick_row_length, last_brick_min_length, (i_arc%2) == 0,brick_shape.z)
+		var brick_fill = fill_length_with_bricks(brick_row_length, last_brick_min_length, (i_arc%2) == 0,brick_shape.z, fugen_thickness)
 		
 		
 		
 		## 3. add first brick
-		var t = t_arc.translated(Vector3.FORWARD * 0)
-		t = bogen.transform * t
-		multimesh.set_instance_transform(i_brick, t)
-		multimesh.set_instance_custom_data(i_brick, Color(1,0,0))
-		i_brick += 1
+		#var t = t_arc.translated(Vector3.FORWARD * 0)
+		#t = bogen.transform * t
+		#multimesh.set_instance_transform(i_brick, t)
+		#multimesh.set_instance_custom_data(i_brick, Color(1,0,0))
+		#i_brick += 1
 		
 		
+		## 3. add bricks (not last one yet)
+		for i in range(brick_fill.size()-1):
+			var brick_z = brick_fill[i][0]
+			var t = t_arc.translated(Vector3.FORWARD * brick_z)
+			t = bogen.transform * t
+			multimesh.set_instance_transform(i_brick, t)
+			multimesh.set_instance_custom_data(i_brick, Color(brick_fill[i][1],0,0))
+			i_brick += 1
 		
 		
 		
@@ -82,12 +90,13 @@ func _process(delta: float) -> void:
 		#print("arc_t_local ", arc_t_local)
 		
 		#print("angle_y_cutsurface ",angle_y_cutsurface)
-		var max_z = length_arch + t_arc.origin.x * tan(angle_y_cutsurface)
+		#TODO what is this? var max_z = length_arch + t_arc.origin.x * tan(angle_y_cutsurface)
 		
 		
 		
 		#print("corners:",corners)
-		var last_brick_z = corners.max() - brick_shape.z
+		#var last_brick_z = corners.max() - brick_shape.z
+		var last_brick_z = brick_fill[brick_fill.size()-1][0]
 		
 		var brick_cut_at_corners = []
 		for j in range(4):
@@ -112,7 +121,7 @@ func _process(delta: float) -> void:
 				t2 = bogen.transform * t2
 				markers[j].transform = t2
 		
-		t = t_arc.translated_local(Vector3.FORWARD * last_brick_z)
+		var t = t_arc.translated_local(Vector3.FORWARD * last_brick_z)
 		t = bogen.transform * t
 		multimesh.set_instance_transform(i_brick, t)
 		
@@ -164,10 +173,83 @@ func _process(delta: float) -> void:
 func fill_length_with_bricks(
 		length:float, 
 		last_brick_min_length:float,
-		end_short:bool, brick_length:float):
+		end_short:bool, brick_length:float, fugen_thickness:float):
 	
-	if length < brick_length:
-		return [length]
+	if last_brick_min_length > brick_length:
+		printerr("last brick too long")
+	
+	
+	
+	if length < brick_length / 2.0:
+		return [[0,length/brick_length]]
+	else:
+		if length < brick_length:
+			pass
+		
+	var result = []
+	var remaining = length
+	
+	var brick_fuge_len = (brick_length  + fugen_thickness)
+	
+	
+	var last_brick_len = max( 0.5* brick_length, last_brick_min_length)
+	
+	if not end_short:
+		remaining = length
+		remaining -= 2 * brick_length  + fugen_thickness # first and last and one fuge
+	
+		result = [[0,1]]
+	else:
+		remaining = length
+		remaining -= 0.5* brick_length  + fugen_thickness + last_brick_len # first and last and one fuge
+		
+		result = [[0,0.5]]
+		
+		
+	var bricks_middle = remaining / brick_fuge_len
+	var whole_bricks = floor(bricks_middle) 
+	#print("bricks_middle", bricks_middle)
+	
+	
+	
+	var half_brickfuge_if_short_row = 0.0
+	if end_short:
+		half_brickfuge_if_short_row = (0.5*brick_length + fugen_thickness) / brick_fuge_len
+	#print("half_brickfuge_if_short_row ",half_brickfuge_if_short_row)
+	
+	for i in range(whole_bricks):
+		if not end_short:
+			result.push_back([brick_fuge_len * (i+1), 1])
+		else:
+			result.push_back([brick_fuge_len * (i+1) - 0.5*brick_length, 1])
+		
+	var brick_remainder = bricks_middle - whole_bricks
+	brick_remainder -= fugen_thickness / brick_fuge_len
+	if brick_remainder <= 0.01 / brick_fuge_len:
+		# TODO: redistribute fuge to all fugen 
+		var to_distribute = (bricks_middle - whole_bricks) * brick_fuge_len
+		var per_fuge = to_distribute / (result.size())
+		
+		for j in range(1,result.size()):
+			result[j][0] += per_fuge * j
+		#print("brick_remainder ",brick_remainder, "to_distribute ",to_distribute," per_fuge ",per_fuge)
+		#printerr("sec to last brick is too short! (<1cm)")
+	else:
+		## second to last brick
+		if not end_short:
+			result.push_back([brick_fuge_len * (whole_bricks+1), brick_remainder])
+		else:
+			var offset = 0.5 * brick_length
+			result.push_back([brick_fuge_len * (whole_bricks+1) - offset, brick_remainder])
+	
+		
+	## last brick
+	if not end_short:
+		result.push_back([length - brick_length, 1])
+	else:
+		result.push_back([length - last_brick_len, last_brick_len])
+
+	return result
 	
 
 #func cut_bricks_using_surface():

@@ -27,6 +27,7 @@ multimesh = SubResource("MultiMesh_b3n01")
 script = ExtResource("1_0uk7o")
 
 [node name="cutsurface" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("PlaneMesh_apvr3")
 
 [node name="cutsurface flipped" type="MeshInstance3D" parent="cutsurface"]
