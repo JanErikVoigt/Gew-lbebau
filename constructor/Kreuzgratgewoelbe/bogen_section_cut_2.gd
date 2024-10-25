@@ -100,15 +100,15 @@ func _process(delta: float) -> void:
 			var brick_cut_custom_data = Color(brick_shorten,brick_shorten_x,brick_shorten_y,0)
 			
 			
-			if i_arc == 20:
-				var markers = [$marker1,$marker2,$marker3,$marker4]
-				#print("corners ",corners, corners.max())
-				#print("brick_cut_at_corners ",brick_cut_at_corners)
-				for j in range(4):
-					var t2 = t_arc.translated_local(Vector3.FORWARD *  corners[j])
-					t2 = t2.translated_local(corner_offsets[j])
-					t2 = bogen.transform * t2
-					markers[j].transform = t2
+			#if i_arc == 20:
+				#var markers = [$marker1,$marker2,$marker3,$marker4]
+				##print("corners ",corners, corners.max())
+				##print("brick_cut_at_corners ",brick_cut_at_corners)
+				#for j in range(4):
+					#var t2 = t_arc.translated_local(Vector3.FORWARD *  corners[j])
+					#t2 = t2.translated_local(corner_offsets[j])
+					#t2 = bogen.transform * t2
+					#markers[j].transform = t2
 			
 			var t = t_arc.translated_local(Vector3.FORWARD * last_brick_z)
 			t = bogen.transform * t
