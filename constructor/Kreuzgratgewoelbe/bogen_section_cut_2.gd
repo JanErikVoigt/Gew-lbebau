@@ -175,24 +175,40 @@ func fill_length_with_bricks(
 		last_brick_min_length:float,
 		end_short:bool, brick_length:float, fugen_thickness:float):
 	
+	var brick_fuge_len = (brick_length  + fugen_thickness)
+	var last_brick_len = max( 0.5* brick_length, last_brick_min_length)
+	
+	
 	if last_brick_min_length > brick_length:
 		printerr("last brick too long")
 	
+	if length <= 2*brick_length + fugen_thickness:
+		#print(length)
+		if end_short:
+			if length <= 1 * brick_length:
+				return [[0,length/brick_length]]
+			else:
+				#print("1to2")
+				var middle_bricklen = length - 2*fugen_thickness - 0.5*brick_length - last_brick_len
+				return [
+					[0,0.5], 
+					[0.5*brick_length + fugen_thickness,middle_bricklen/brick_length],
+					[length-last_brick_len,last_brick_len/brick_length]]
+		else: #end long
+			if length <= 1 * brick_length:
+				return [[0,length/brick_length]]
+			else:
+				var remaining = length - fugen_thickness
+				var bricklen_last = max(remaining/2, last_brick_min_length)
+				var bricklen_first = remaining - bricklen_last
+				return [[0,bricklen_first/brick_length],[bricklen_first + fugen_thickness, bricklen_last]]
 	
 	
-	if length < brick_length / 2.0:
-		return [[0,length/brick_length]]
-	else:
-		if length < brick_length:
-			pass
 		
 	var result = []
 	var remaining = length
 	
-	var brick_fuge_len = (brick_length  + fugen_thickness)
 	
-	
-	var last_brick_len = max( 0.5* brick_length, last_brick_min_length)
 	
 	if not end_short:
 		remaining = length
