@@ -62,52 +62,87 @@ func _process(delta: float) -> void:
 		## 2. fill with bricks
 		var brick_row_length = corners.max()
 		var last_brick_min_length = corners.max() - corners.min()
-		
+		if length_arch < 0:
+			brick_row_length = abs(corners.min())
+			# last_brick_min_length has right sign, already!
+			
 		var brick_fill = fill_length_with_bricks(brick_row_length, last_brick_min_length, (i_arc%2) == 0,brick_shape.z, fugen_thickness)
 		
 		
 		## 3. add bricks (not last one yet)
+		
 		for i in range(brick_fill.size()-1):
-			var brick_z = brick_fill[i][0]
+			var brick_z
+			if length_arch >= 0:
+				brick_z = brick_fill[i][0]
+			else:
+				brick_z = -brick_fill[i][0] - brick_fill[i][1] * brick_length
 			var t = t_arc.translated(Vector3.FORWARD * brick_z)
 			t = bogen.transform * t
 			multimesh.set_instance_transform(i_brick, t)
 			multimesh.set_instance_custom_data(i_brick, Color(brick_fill[i][1],0,0))
 			i_brick += 1
 		
-		
 		## 4. add last brick
-		var last_brick_z = brick_fill[brick_fill.size()-1][0]
-		
-		var brick_cut_at_corners = []
-		for j in range(4):
-			brick_cut_at_corners.push_back(
-				brick_shape.z - (corners[j] - last_brick_z)
-			)
+		if length_arch >= 0:
+			var last_brick_z = brick_fill[brick_fill.size()-1][0]
 			
-			
-		var brick_shorten = (brick_shape.z-brick_cut_at_corners[0]) /brick_shape.z
-		var brick_shorten_y = brick_cut_at_corners[1] - brick_cut_at_corners[0]
-		var brick_shorten_x = brick_cut_at_corners[2] - brick_cut_at_corners[0]
-		var brick_cut_custom_data = Color(brick_shorten,brick_shorten_x,brick_shorten_y,0)
-		
-		
-		if i_arc == 20:
-			var markers = [$marker1,$marker2,$marker3,$marker4]
-			#print("corners ",corners, corners.max())
-			#print("brick_cut_at_corners ",brick_cut_at_corners)
+			var brick_cut_at_corners = []
 			for j in range(4):
-				var t2 = t_arc.translated_local(Vector3.FORWARD *  corners[j])
-				t2 = t2.translated_local(corner_offsets[j])
-				t2 = bogen.transform * t2
-				markers[j].transform = t2
+				brick_cut_at_corners.push_back(
+					brick_shape.z - (corners[j] - last_brick_z)
+				)
+				
+				
+			var brick_shorten = (brick_shape.z-brick_cut_at_corners[0]) /brick_shape.z
+			var brick_shorten_y = brick_cut_at_corners[1] - brick_cut_at_corners[0]
+			var brick_shorten_x = brick_cut_at_corners[2] - brick_cut_at_corners[0]
+			var brick_cut_custom_data = Color(brick_shorten,brick_shorten_x,brick_shorten_y,0)
+			
+			
+			if i_arc == 20:
+				var markers = [$marker1,$marker2,$marker3,$marker4]
+				#print("corners ",corners, corners.max())
+				#print("brick_cut_at_corners ",brick_cut_at_corners)
+				for j in range(4):
+					var t2 = t_arc.translated_local(Vector3.FORWARD *  corners[j])
+					t2 = t2.translated_local(corner_offsets[j])
+					t2 = bogen.transform * t2
+					markers[j].transform = t2
+			
+			var t = t_arc.translated_local(Vector3.FORWARD * last_brick_z)
+			t = bogen.transform * t
+			multimesh.set_instance_transform(i_brick, t)
+			
+			multimesh.set_instance_custom_data(i_brick, brick_cut_custom_data)
+			i_brick += 1
 		
-		var t = t_arc.translated_local(Vector3.FORWARD * last_brick_z)
-		t = bogen.transform * t
-		multimesh.set_instance_transform(i_brick, t)
-		
-		multimesh.set_instance_custom_data(i_brick, brick_cut_custom_data)
-		i_brick += 1
+		else:
+			var last_brick_z = - brick_fill[brick_fill.size()-1][0]
+			#if i_arc == 20:
+				#print(corners[1],last_brick_z)
+			var brick_cut_at_corners = []
+			for j in range(4):
+				brick_cut_at_corners.push_back(
+					brick_shape.z - (-corners[j] + last_brick_z)
+				)
+			#if i_arc == 20:
+		#		print(brick_cut_at_corners)
+			#
+				
+			var brick_shorten = (brick_shape.z-brick_cut_at_corners[2]) /brick_shape.z
+			var brick_shorten_y = brick_cut_at_corners[1] - brick_cut_at_corners[0]
+			var brick_shorten_x = -brick_cut_at_corners[2] + brick_cut_at_corners[0]
+			var brick_cut_custom_data = Color(brick_shorten,brick_shorten_x,brick_shorten_y,0)
+
+			
+			var t = t_arc.translated_local(Vector3.RIGHT* brick_shape.x).rotated_local(Vector3.UP, PI).translated_local(Vector3.FORWARD * (-last_brick_z))
+			t = bogen.transform * t
+			multimesh.set_instance_transform(i_brick, t)
+			
+			multimesh.set_instance_custom_data(i_brick, brick_cut_custom_data)
+			i_brick += 1
+			
 		
 	multimesh.visible_instance_count = i_brick
 
