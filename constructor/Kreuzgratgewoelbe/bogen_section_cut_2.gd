@@ -66,15 +66,6 @@ func _process(delta: float) -> void:
 		var brick_fill = fill_length_with_bricks(brick_row_length, last_brick_min_length, (i_arc%2) == 0,brick_shape.z, fugen_thickness)
 		
 		
-		
-		## 3. add first brick
-		#var t = t_arc.translated(Vector3.FORWARD * 0)
-		#t = bogen.transform * t
-		#multimesh.set_instance_transform(i_brick, t)
-		#multimesh.set_instance_custom_data(i_brick, Color(1,0,0))
-		#i_brick += 1
-		
-		
 		## 3. add bricks (not last one yet)
 		for i in range(brick_fill.size()-1):
 			var brick_z = brick_fill[i][0]
@@ -85,17 +76,7 @@ func _process(delta: float) -> void:
 			i_brick += 1
 		
 		
-		
-		#var arc_t_local = bogen_t_inv * t_arc.origin
-		#print("arc_t_local ", arc_t_local)
-		
-		#print("angle_y_cutsurface ",angle_y_cutsurface)
-		#TODO what is this? var max_z = length_arch + t_arc.origin.x * tan(angle_y_cutsurface)
-		
-		
-		
-		#print("corners:",corners)
-		#var last_brick_z = corners.max() - brick_shape.z
+		## 4. add last brick
 		var last_brick_z = brick_fill[brick_fill.size()-1][0]
 		
 		var brick_cut_at_corners = []
@@ -128,45 +109,7 @@ func _process(delta: float) -> void:
 		multimesh.set_instance_custom_data(i_brick, brick_cut_custom_data)
 		i_brick += 1
 		
-		#var bricks_per_row = ceil(abs(shape.z) / brick_length)
-		#var bricks_per_row_offset = ceil((abs(shape.z)-0.5*brick_length) / brick_length)
-		#var bricks_more = bricks_per_row_offset - bricks_per_row
-		#var bricks_this_row = bricks_per_row + (i_arc%2)*bricks_more
-		#for i_row in range(bricks_this_row):
-			#
-			#var row_pos = brick_length * i_row + brick_length / 2 * (i_arc % 2)
-			#
-			#var t = t_arc.translated(Vector3.FORWARD * row_pos)
-			#
-			#if shape.z < 0:
-				#t = t.translated(Vector3.BACK * abs(shape.z))
-			#
-			#t = bogen.transform * t
-			#multimesh.set_instance_transform(i_brick, t)
-			#multimesh.set_instance_custom_data(i_brick, Color(1,0,0))
-#
-			#var is_last = (i_row == bricks_this_row -1)
-			#if is_last:
-				#var remaining_wall = abs(shape.z) - i_row * brick_length - brick_length / 2 * ((i_arc) % 2)
-				#var brick_fraction = remaining_wall / brick_length
-				#multimesh.set_instance_custom_data(i_brick, Color(brick_fraction,0,0))
-			#
-			#i_brick += 1
-		#
-		#if (i_arc % 2) == 1:
-			#var t = t_arc
-			#if shape.z < 0:
-				#t = t.translated(Vector3.BACK * abs(shape.z))
-			#t = bogen.transform * t
-			#multimesh.set_instance_transform(i_brick, t)
-			#multimesh.set_instance_custom_data(i_brick, Color(0.5,0,0))
-			#i_brick += 1
-			
-			
-	
 	multimesh.visible_instance_count = i_brick
-
-	#cut_bricks_using_surface()
 
 
 # TODO also take last row of bricks
