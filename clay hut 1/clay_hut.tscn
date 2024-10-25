@@ -1,0 +1,147 @@
+[gd_scene load_steps=29 format=3 uid="uid://nr4da2yvj5fh"]
+
+[ext_resource type="ArrayMesh" uid="uid://bm5whg77ewatm" path="res://props/lennys survival kit/Models/OBJ format/structure-floor.obj" id="1_lqa8o"]
+[ext_resource type="ArrayMesh" uid="uid://db32jsic2cls0" path="res://props/lennys survival kit/Models/OBJ format/chest.obj" id="2_bcjxo"]
+[ext_resource type="ArrayMesh" uid="uid://00jqe60u4a3x" path="res://props/lennys survival kit/Models/OBJ format/fence-doorway.obj" id="3_t4vma"]
+[ext_resource type="ArrayMesh" uid="uid://cjfyh0nfebhqf" path="res://props/lennys survival kit/Models/OBJ format/fence-fortified.obj" id="4_3gnj8"]
+[ext_resource type="ArrayMesh" uid="uid://c0b2fs3x6h8nr" path="res://props/lennys survival kit/Models/OBJ format/fence.obj" id="5_hyj25"]
+[ext_resource type="ArrayMesh" uid="uid://dvte0ir5nonrg" path="res://props/lennys survival kit/Models/OBJ format/fish-large.obj" id="6_n8j0h"]
+[ext_resource type="ArrayMesh" uid="uid://ec05foxtj8ok" path="res://props/lennys survival kit/Models/OBJ format/floor.obj" id="7_f85px"]
+[ext_resource type="ArrayMesh" uid="uid://dhlh1l8weraha" path="res://props/lennys survival kit/Models/OBJ format/grass-large.obj" id="8_6f11l"]
+[ext_resource type="ArrayMesh" uid="uid://bjd0dwyxa0w7m" path="res://props/lennys survival kit/Models/OBJ format/grass.obj" id="9_n1t3o"]
+[ext_resource type="ArrayMesh" uid="uid://ccpxehyy506hk" path="res://props/lennys survival kit/Models/OBJ format/patch-grass.obj" id="10_rmbon"]
+[ext_resource type="ArrayMesh" uid="uid://cdi3ihs8igtsr" path="res://props/lennys survival kit/Models/OBJ format/patch-grass-large.obj" id="11_3v47c"]
+[ext_resource type="ArrayMesh" uid="uid://bto266gqs8r22" path="res://props/lennys survival kit/Models/OBJ format/resource-wood.obj" id="12_7wquk"]
+[ext_resource type="ArrayMesh" uid="uid://drgevxilfbtuf" path="res://props/lennys survival kit/Models/OBJ format/resource-stone.obj" id="13_awdiu"]
+[ext_resource type="ArrayMesh" uid="uid://caiwpd01iju3d" path="res://props/lennys survival kit/Models/OBJ format/rock-a.obj" id="14_a0uqa"]
+[ext_resource type="ArrayMesh" uid="uid://bsxerwap0c6fg" path="res://props/lennys survival kit/Models/OBJ format/rock-b.obj" id="15_6iaax"]
+[ext_resource type="ArrayMesh" uid="uid://wvnlrtfh8ful" path="res://props/lennys survival kit/Models/OBJ format/rock-sand-b.obj" id="16_l4g5l"]
+[ext_resource type="ArrayMesh" uid="uid://dvg1btwl6j6hd" path="res://props/lennys survival kit/Models/OBJ format/rock-sand-c.obj" id="17_f5eom"]
+[ext_resource type="ArrayMesh" uid="uid://cw6bs3jcyeh42" path="res://props/lennys survival kit/Models/OBJ format/signpost.obj" id="18_7sy02"]
+[ext_resource type="ArrayMesh" uid="uid://8lpt2yj854to" path="res://props/lennys survival kit/Models/OBJ format/signpost-single.obj" id="19_rkthu"]
+[ext_resource type="ArrayMesh" uid="uid://b4v610ifx84ef" path="res://props/lennys survival kit/Models/OBJ format/structure-canvas.obj" id="20_ggstg"]
+[ext_resource type="ArrayMesh" uid="uid://b3ijebau0rphb" path="res://props/lennys survival kit/Models/OBJ format/structure-metal-doorway.obj" id="21_q6fly"]
+[ext_resource type="ArrayMesh" uid="uid://cr2sqyx6i2w4o" path="res://props/lennys survival kit/Models/OBJ format/structure-roof.obj" id="22_pbh3l"]
+[ext_resource type="ArrayMesh" uid="uid://cloobdhpte5fk" path="res://props/lennys survival kit/Models/OBJ format/structure.obj" id="23_mj3di"]
+[ext_resource type="ArrayMesh" uid="uid://dh03j1xp00lny" path="res://props/lennys survival kit/Models/OBJ format/tent-canvas-half.obj" id="24_y0wg2"]
+[ext_resource type="ArrayMesh" uid="uid://dpxkffst6dvkq" path="res://props/lennys survival kit/Models/OBJ format/tool-axe.obj" id="25_p0wqj"]
+[ext_resource type="ArrayMesh" uid="uid://txyw8rq7rtb2" path="res://props/lennys survival kit/Models/OBJ format/tool-axe-upgraded.obj" id="26_h67w2"]
+[ext_resource type="ArrayMesh" uid="uid://3ikbk5ianmy6" path="res://props/lennys survival kit/Models/OBJ format/tool-shovel.obj" id="27_stw8h"]
+[ext_resource type="ArrayMesh" uid="uid://d16ww1wjjly2w" path="res://props/lennys survival kit/Models/OBJ format/tool-shovel-upgraded.obj" id="28_c3yqh"]
+
+[node name="Clay Hut" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_lqa8o")
+
+[node name="Chest" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.786388, 0, 0.0159914)
+mesh = ExtResource("2_bcjxo")
+
+[node name="Fence-doorway" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09914, 0, -1.19409)
+mesh = ExtResource("3_t4vma")
+
+[node name="Fence-fortified" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.555958, 0, -0.908255)
+mesh = ExtResource("4_3gnj8")
+
+[node name="Fence" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.53927, 0, -0.278462)
+mesh = ExtResource("5_hyj25")
+
+[node name="Fish-large" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4177, -5.96046e-08, 0.192833)
+mesh = ExtResource("6_n8j0h")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19473, 1.19209e-07, 1.05884)
+mesh = ExtResource("7_f85px")
+
+[node name="Grass-large" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.94417, 0, 0.935833)
+mesh = ExtResource("8_6f11l")
+
+[node name="Grass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7367, 0, 1.42056)
+mesh = ExtResource("9_n1t3o")
+
+[node name="Patch-grass" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.49066, -0.871351, 0, 0.871351, 0.49066, 2.99335, 0, 2.51949)
+mesh = ExtResource("10_rmbon")
+
+[node name="Patch-grass-large" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.07502, -3.57628e-07, 2.46366)
+mesh = ExtResource("11_3v47c")
+
+[node name="Resource-wood" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.52172, 0, 1.15402)
+mesh = ExtResource("12_7wquk")
+
+[node name="Resource-stone" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.26745, -1.19209e-07, 1.62779)
+mesh = ExtResource("13_awdiu")
+
+[node name="Rock-a" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0718694, 0, 1.7884)
+mesh = ExtResource("14_a0uqa")
+
+[node name="Rock-b" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0787406, 0, 0.967372)
+mesh = ExtResource("15_6iaax")
+
+[node name="Rock-sand-b" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.991405, 0, 2.05439)
+mesh = ExtResource("16_l4g5l")
+
+[node name="Rock-sand-c" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.40589, -1.19209e-07, -2.1703)
+mesh = ExtResource("17_f5eom")
+
+[node name="Signpost" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.91057, 0, 0.776376)
+mesh = ExtResource("18_7sy02")
+
+[node name="Signpost-single" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.39739, 0, 0.941235)
+mesh = ExtResource("19_rkthu")
+
+[node name="Structure-canvas" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.33775, 0, 0.984439)
+mesh = ExtResource("20_ggstg")
+
+[node name="Structure-floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32803, 0, 1.73265)
+mesh = ExtResource("1_lqa8o")
+
+[node name="Structure-metal-doorway" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1103, 0, 2.95493)
+mesh = ExtResource("21_q6fly")
+
+[node name="Structure-roof" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.7339, -1.19209e-07, -0.322028)
+mesh = ExtResource("22_pbh3l")
+
+[node name="Structure" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.61248, -1.19209e-07, -0.516091)
+mesh = ExtResource("23_mj3di")
+
+[node name="Tent-canvas-half" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15946, 0, -0.25459)
+mesh = ExtResource("24_y0wg2")
+
+[node name="Tool-axe" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0571485, 0, 2.914)
+mesh = ExtResource("25_p0wqj")
+
+[node name="Tool-axe-upgraded" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.10332, 0, 2.71211)
+mesh = ExtResource("26_h67w2")
+
+[node name="Tool-shovel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56062, 0, 2.61182)
+mesh = ExtResource("27_stw8h")
+
+[node name="Tool-shovel-upgraded" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72582, 1.19209e-07, 2.90611)
+mesh = ExtResource("28_c3yqh")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://cve2hghh5mudq"]
+
+[ext_resource type="ArrayMesh" uid="uid://b2ysfptgsgeox" path="res://city/Buildings.obj" id="1_vnp88"]
+[ext_resource type="ArrayMesh" uid="uid://ki8kqtpi8ujl" path="res://city/areas_paths_roads.obj" id="2_rblfm"]
+[ext_resource type="Environment" uid="uid://buewl6kp2hjm3" path="res://world/environment.tres" id="2_wje6n"]
+[ext_resource type="ArrayMesh" uid="uid://c7u1shfs05xah" path="res://city/terrain_smaller.obj" id="3_1pexx"]
+[ext_resource type="ArrayMesh" uid="uid://bhnqxt8cubhde" path="res://city/forest.obj" id="4_4mw1l"]
+[ext_resource type="ArrayMesh" uid="uid://d252ewojfe4wl" path="res://city/water_level.obj" id="5_7f6ij"]
+[ext_resource type="CameraAttributesPractical" uid="uid://crkiror88y4wr" path="res://world/camera_attributes.tres" id="7_tg0po"]
+
+[node name="World" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_vnp88")
+
+[node name="Roads" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.13428, 0)
+mesh = ExtResource("2_rblfm")
+
+[node name="Land" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = ExtResource("3_1pexx")
+
+[node name="Forest" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = ExtResource("4_4mw1l")
+
+[node name="Forest2" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = ExtResource("5_7f6ij")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.849787, -0.292647, -0.43843, 0.490624, 0.743235, 0.454851, 0.192745, -0.601631, 0.775171, -4.83829, 349, 0)
+light_energy = 3.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_wje6n")
+camera_attributes = ExtResource("7_tg0po")

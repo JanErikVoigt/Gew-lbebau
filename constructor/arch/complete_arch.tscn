@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bse1x3iwlwp1a"]
+
+[ext_resource type="Script" path="res://constructor/arch/complete_arch.gd" id="1_efe8w"]
+[ext_resource type="PackedScene" uid="uid://bah1ouv5q8a8" path="res://constructor/arch/arch2.tscn" id="2_c20w8"]
+
+[node name="CompleteArch" type="Node3D"]
+script = ExtResource("1_efe8w")
+control_shape = Vector2(9.45, 4.74)
+
+[node name="Arch" parent="." instance=ExtResource("2_c20w8")]
+control_shape = Vector2(4.725, 4.74)
+
+[node name="Arch2" parent="." instance=ExtResource("2_c20w8")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+control_shape = Vector2(4.725, 4.74)

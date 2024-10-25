@@ -1,0 +1,12 @@
+# Blender MTL File: 'Backstein.blend'
+# Material Count: 1
+
+newmtl Material
+Ns 27.603318
+Ka 1.000000 1.000000 1.000000
+Kd 0.207916 0.074328 0.071213
+Ks 0.064767 0.064767 0.064767
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2

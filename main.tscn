@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://day1erg7a2y6l"]
+
+[ext_resource type="PackedScene" uid="uid://sg13gutukje1" path="res://constructor/column/column_builder.tscn" id="1_q06sx"]
+[ext_resource type="Environment" uid="uid://buewl6kp2hjm3" path="res://world/environment.tres" id="1_yc3nn"]
+[ext_resource type="PackedScene" uid="uid://cve2hghh5mudq" path="res://world/world.tscn" id="2_nnbfn"]
+[ext_resource type="CameraAttributesPractical" uid="uid://crkiror88y4wr" path="res://world/camera_attributes.tres" id="2_ude5g"]
+[ext_resource type="ArrayMesh" uid="uid://dtifbo3utwryq" path="res://St Marien/col1.obj" id="5_vqt6o"]
+[ext_resource type="ArrayMesh" uid="uid://ds1y1yr82y8ir" path="res://St Marien/complete osm/Lübeck Medival.obj" id="6_xodp5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_logrc"]
+albedo_color = Color(0.230315, 0.230315, 0.230315, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hduva"]
+material = SubResource("StandardMaterial3D_logrc")
+size = Vector3(100, 20, 60)
+
+[node name="Main" type="Node3D"]
+
+[node name="Main Camera" type="Camera3D" parent="."]
+transform = Transform3D(-0.0946411, -0.249487, -0.963742, -0.0781742, 0.966961, -0.242644, 0.992437, 0.0523758, -0.111018, -5.96211, 67.4741, -0.344392)
+environment = ExtResource("1_yc3nn")
+attributes = ExtResource("2_ude5g")
+
+[node name="Column Builder" parent="." instance=ExtResource("1_q06sx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0222, 11.9343, 20.2626)
+
+[node name="World" parent="." instance=ExtResource("2_nnbfn")]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 94.0866, 15.2784, 435.741)
+
+[node name="Building Platform" type="MeshInstance3D" parent="World"]
+transform = Transform3D(0.986801, 0, -0.161931, 0, 1, 0, 0.161931, 0, 0.986801, 31.1059, 25.2334, -447.931)
+mesh = SubResource("BoxMesh_hduva")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Building Platform"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2501, 0)
+mesh = ExtResource("5_vqt6o")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="World"]
+mesh = ExtResource("6_xodp5")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc1o2n712yn6n"]
+
+[ext_resource type="Script" path="res://constructor/Kreuzgratgewoelbe/kreuzgratgewoelbe.gd" id="1_q4axx"]
+
+[node name="Kreuzgratgewoelbe" type="Node3D"]
+script = ExtResource("1_q4axx")

@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dcjnibcto8jqx"]
+
+[ext_resource type="Shader" path="res://backsteine/brick_cut.gdshader" id="1_jcggd"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jcggd")

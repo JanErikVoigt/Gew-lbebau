@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8w1qeyky0v8q"]
+
+[ext_resource type="Script" path="res://constructor/filler/gewoelbe_filler.gd" id="1_gsuo0"]
+[ext_resource type="PackedScene" uid="uid://bah1ouv5q8a8" path="res://constructor/arch/arch2.tscn" id="2_63vr2"]
+[ext_resource type="ArrayMesh" uid="uid://cx0g1of5qijx6" path="res://backsteine/Backstein.obj" id="3_wkay5"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_mp5se"]
+transform_format = 1
+mesh = ExtResource("3_wkay5")
+
+[node name="Gewoelbe Filler" type="Node3D"]
+script = ExtResource("1_gsuo0")
+
+[node name="Arch" parent="." instance=ExtResource("2_63vr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.414, 0, 0)
+control_shape = Vector2(1.414, 3)
+
+[node name="Arch2" parent="." instance=ExtResource("2_63vr2")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -1.414, 0, 1.414)
+control_shape = Vector2(2, 2.5)
+
+[node name="Arch3" parent="." instance=ExtResource("2_63vr2")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.414, 2.5, 0)
+control_shape = Vector2(1.414, 0.5)
+roundness = 0.85
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_mp5se")

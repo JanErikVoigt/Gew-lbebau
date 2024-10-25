@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cx0g1of5qijx6"
+path="res://.godot/imported/Backstein.obj-0e8ac86793b736bc4f2dba5478a2a095.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Backstein.obj-0e8ac86793b736bc4f2dba5478a2a095.mesh"]
+
+source_file="res://backsteine/Backstein.obj"
+dest_files=["res://.godot/imported/Backstein.obj-0e8ac86793b736bc4f2dba5478a2a095.mesh", "res://.godot/imported/Backstein.obj-0e8ac86793b736bc4f2dba5478a2a095.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

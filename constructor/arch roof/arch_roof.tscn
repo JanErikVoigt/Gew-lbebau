@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbupu6v3vcrat"]
+
+[ext_resource type="Script" path="res://constructor/arch roof/arch_roof.gd" id="1_xp7hu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t5303"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.266667, 0.623529, 0.529412, 0.172549)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pjsap"]
+material = SubResource("StandardMaterial3D_t5303")
+size = Vector3(8, 4.025, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7j4p4"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.870588, 0.745098, 0.109804, 0.717647)
+
+[sub_resource type="SphereMesh" id="SphereMesh_a5b8j"]
+material = SubResource("StandardMaterial3D_7j4p4")
+radius = 0.05
+height = 0.1
+radial_segments = 32
+rings = 16
+
+[sub_resource type="MultiMesh" id="MultiMesh_ygfq2"]
+transform_format = 1
+instance_count = 27
+mesh = SubResource("SphereMesh_a5b8j")
+buffer = PackedFloat32Array(1, 0, 0, 0, 0, 1, 0, 4.025, 0, 0, 1, 0, 1, 0, 0, 4, 0, 1, 0, 0, 0, 0, 1, 2, 1, 0, 0, 4, 0, 1, 0, 0, 0, 0, 1, 2, 1, 0, 0, 4, 0, 1, 0, 0, 0, 0, 1, 2, 1, 0, 0, 4, 0, 1, 0, 0, 0, 0, 1, 2, 1, 0, 0, 0, 0, 1, 0, 4.025, 0, 0, 1, 2, 1, 0, 0, -0.920227, 0, 1, 0, -0.889589, 0, 0, 1, 2, 0.984045, -0.177918, 0, 4, 0.177918, 0.984045, 0, 0, 0, 0, 1, 2, 0.971525, -0.236936, 0, 3.9374, 0.236936, 0.971525, 0, 0.295094, 0, 0, 1, 2, 0.955469, -0.295093, 0, 3.85712, 0.295093, 0.955469, 0, 0.585875, 0, 0, 1, 2, 0.935934, -0.352175, 0, 3.75944, 0.352175, 0.935934, 0, 0.871286, 0, 0, 1, 2, 0.912993, -0.407975, 0, 3.64474, 0.407975, 0.912993, 0, 1.15029, 0, 0, 1, 2, 0.886729, -0.46229, 0, 3.51342, 0.46229, 0.886729, 0, 1.42186, 0, 0, 1, 2, 0.857236, -0.514923, 0, 3.36596, 0.514923, 0.857236, 0, 1.68503, 0, 0, 1, 2, 0.824624, -0.565681, 0, 3.20289, 0.565681, 0.824624, 0, 1.93882, 0, 0, 1, 2, 0.78901, -0.61438, 0, 3.02482, 0.61438, 0.78901, 0, 2.18231, 0, 0, 1, 2, 0.750524, -0.660843, 0, 2.83239, 0.660843, 0.750524, 0, 2.41463, 0, 0, 1, 2, 0.709306, -0.704901, 0, 2.6263, 0.704901, 0.709306, 0, 2.63491, 0, 0, 1, 2, 0.665506, -0.746392, 0, 2.40731, 0.746392, 0.665506, 0, 2.84237, 0, 0, 1, 2, 0.619284, -0.785167, 0, 2.17619, 0.785167, 0.619284, 0, 3.03625, 0, 0, 1, 2, 0.570808, -0.821084, 0, 1.93381, 0.821084, 0.570808, 0, 3.21583, 0, 0, 1, 2, 0.520254, -0.854012, 0, 1.68104, 0.854012, 0.520254, 0, 3.38047, 0, 0, 1, 2, 0.467806, -0.883831, 0, 1.4188, 0.883831, 0.467806, 0, 3.52957, 0, 0, 1, 2, 0.413656, -0.910433, 0, 1.14805, 0.910433, 0.413656, 0, 3.66258, 0, 0, 1, 2, 0.357999, -0.933722, 0, 0.86977, 0.933722, 0.357999, 0, 3.77902, 0, 0, 1, 2, 0.30104, -0.953611, 0, 0.584974, 0.953611, 0.30104, 0, 3.87847, 0, 0, 1, 2, 0.242985, -0.97003, 0, 0.294698, 0.97003, 0.242985, 0, 3.96056, 0, 0, 1, 2)
+
+[node name="Arch Roof" type="Node3D"]
+script = ExtResource("1_xp7hu")
+control_shape = Vector3(8, 4.025, 4)
+
+[node name="Control Shape" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0125, 0)
+mesh = SubResource("BoxMesh_pjsap")
+
+[node name="Construction Visualization" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_ygfq2")
