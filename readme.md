@@ -2,4 +2,4 @@
 
 made in godot
 
-![screenshot](/home/janerik/Documents/Projects 2024/kirchenbau1/readme/screenshot.png)
+![screenshot](readme/screenshot.png)
