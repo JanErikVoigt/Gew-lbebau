@@ -1,39 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://day1erg7a2y6l"]
+[gd_scene load_steps=7 format=3 uid="uid://day1erg7a2y6l"]
 
-[ext_resource type="PackedScene" uid="uid://sg13gutukje1" path="res://constructor/column/column_builder.tscn" id="1_q06sx"]
-[ext_resource type="Environment" uid="uid://buewl6kp2hjm3" path="res://world/environment.tres" id="1_yc3nn"]
-[ext_resource type="PackedScene" uid="uid://cve2hghh5mudq" path="res://world/world.tscn" id="2_nnbfn"]
-[ext_resource type="CameraAttributesPractical" uid="uid://crkiror88y4wr" path="res://world/camera_attributes.tres" id="2_ude5g"]
-[ext_resource type="ArrayMesh" uid="uid://dtifbo3utwryq" path="res://St Marien/col1.obj" id="5_vqt6o"]
-[ext_resource type="ArrayMesh" uid="uid://ds1y1yr82y8ir" path="res://St Marien/complete osm/Lübeck Medival.obj" id="6_xodp5"]
+[ext_resource type="PackedScene" uid="uid://d1x5bpl7sr0cn" path="res://kreuzgratgewoelbe.tscn" id="1_4ggu6"]
+[ext_resource type="PackedScene" uid="uid://c857wffd7itrq" path="res://ui-kreuzgratgewoelbe.tscn" id="2_m38ky"]
+[ext_resource type="Script" path="res://camera_3d_pivot.gd" id="3_k20lr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_logrc"]
-albedo_color = Color(0.230315, 0.230315, 0.230315, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_c5wj3"]
+sky_top_color = Color(0.972549, 0.929412, 0.890196, 1)
+sky_horizon_color = Color(0.87451, 0.827451, 0.764706, 1)
+ground_bottom_color = Color(0.63297, 0.519454, 0.442682, 1)
+ground_horizon_color = Color(0.815686, 0.721569, 0.658824, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_hduva"]
-material = SubResource("StandardMaterial3D_logrc")
-size = Vector3(100, 20, 60)
+[sub_resource type="Sky" id="Sky_xmj4n"]
+sky_material = SubResource("ProceduralSkyMaterial_c5wj3")
+
+[sub_resource type="Environment" id="Environment_l0lq4"]
+background_mode = 2
+sky = SubResource("Sky_xmj4n")
+ambient_light_color = Color(0.773775, 0.68514, 0.623729, 1)
 
 [node name="Main" type="Node3D"]
 
-[node name="Main Camera" type="Camera3D" parent="."]
-transform = Transform3D(-0.0946411, -0.249487, -0.963742, -0.0781742, 0.966961, -0.242644, 0.992437, 0.0523758, -0.111018, -5.96211, 67.4741, -0.344392)
-environment = ExtResource("1_yc3nn")
-attributes = ExtResource("2_ude5g")
+[node name="KreuzgratGewoelbe" parent="." instance=ExtResource("1_4ggu6")]
 
-[node name="Column Builder" parent="." instance=ExtResource("1_q06sx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.0222, 11.9343, 20.2626)
+[node name="Control" parent="." instance=ExtResource("2_m38ky")]
 
-[node name="World" parent="." instance=ExtResource("2_nnbfn")]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 94.0866, 15.2784, 435.741)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.929802, -0.227964, -0.288964, 0, 0.785101, -0.619368, 0.36806, 0.57589, 0.729988, 0, 0, 10.6654)
 
-[node name="Building Platform" type="MeshInstance3D" parent="World"]
-transform = Transform3D(0.986801, 0, -0.161931, 0, 1, 0, 0.161931, 0, 0.986801, 31.1059, 25.2334, -447.931)
-mesh = SubResource("BoxMesh_hduva")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l0lq4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="World/Building Platform"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2501, 0)
-mesh = ExtResource("5_vqt6o")
+[node name="camera_pivot" type="Node3D" parent="."]
+transform = Transform3D(-0.66015, -0.669416, 0.340711, 0, 0.453596, 0.891207, -0.751134, 0.58833, -0.299441, 0, 1.39039, 0)
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="World"]
-mesh = ExtResource("6_xodp5")
+[node name="Camera3D" type="Camera3D" parent="camera_pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+script = ExtResource("3_k20lr")
