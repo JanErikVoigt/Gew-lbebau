@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode vertex_lighting;
 
 void vertex() {
 	bool up = (VERTEX.y > 0.0);
@@ -22,10 +23,11 @@ void vertex() {
 }
 
 void fragment() {
-	ALBEDO = COLOR.xyz;//vec4(1.0,1.0,1.0,1.0);
-	ROUGHNESS = 1.0;
-	SPECULAR = 0.2;
-	METALLIC = 0.01;
+	ALBEDO = vec3(197.0/255.0, 112.0/255.0, 93.0/255.0);//COLOR.xyz;//vec4(1.0,1.0,1.0,1.0);
+	ROUGHNESS = 0.50;
+	SPECULAR = 0.02;
+	METALLIC = 0.00;
+
 	// Called for every pixel the material is visible on.
 }
 
